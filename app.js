@@ -11,6 +11,8 @@ var u_id="";
 var WordPOS = require('wordpos'),
     wordpos = new WordPOS();
 
+var PythonShell = require('python-shell');
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(__dirname + '/uploads'));
@@ -21,6 +23,27 @@ app.set('view engine', 'html');
 
 app.get('/', function(req, res){
   res.sendFile(path.join(__dirname, 'views/index.html'));
+});
+
+
+//Trying Python script nltk
+app.get('/', function(req, res){
+  var options = {
+  mode: 'text',
+  pythonPath: 'python',
+  pythonOptions: ['-u'],
+  scriptPath: '',
+  args: ['a woman riding a motorcycle on a city street']
+};
+
+PythonShell.run('my_script.py', options, function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log('results: %j', results);
+});
+
+
+  res.send("Done");
 });
 
 
