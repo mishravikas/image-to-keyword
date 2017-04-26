@@ -36,7 +36,7 @@ app.get('/shell', function(req, res){
   args: ['a woman riding a motorcycle on a city street']
 };
 
-PythonShell.run('my_script.py', options, function (err, results) {
+PythonShell.run('find_verb.py', options, function (err, results) {
   if (err) throw err;
   // results is an array consisting of messages collected during execution
   console.log('results: %j', results);
