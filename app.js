@@ -107,10 +107,27 @@ function callback(error, response, body) {
         var caption = JSON.parse(body)['caption'];
 console.log(caption);
 
-wordpos.getNouns(caption, function(result){
-    console.log(result);
-res.send([result,caption]);
+
+  var options = {
+  mode: 'text',
+  pythonPath: 'python',
+  pythonOptions: ['-u'],
+  scriptPath: '',
+  args: [caption]
+};
+
+PythonShell.run('find_nouns.py', options, function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log('results: %j', results);
+  res.send([results,caption])
 });
+
+//OLD CODE
+// wordpos.getNouns(caption, function(result){
+//     console.log(result);
+// res.send([result,caption]);
+// });
 
     }
 }
@@ -133,10 +150,26 @@ function callback(error, response, body) {
         var caption = JSON.parse(body)['caption'];
 console.log(caption);
 
-wordpos.getAdjectives(caption, function(result){
-    console.log(result);
-res.send([result,caption]);
+  var options = {
+  mode: 'text',
+  pythonPath: 'python',
+  pythonOptions: ['-u'],
+  scriptPath: '',
+  args: [caption]
+};
+
+PythonShell.run('find_adjective.py', options, function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log('results: %j', results);
+  res.send([results,caption])
 });
+
+//OLD CODE
+// wordpos.getAdjectives(caption, function(result){
+//     console.log(result);
+// res.send([result,caption]);
+// });
 
     }
 }
