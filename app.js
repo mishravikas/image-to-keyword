@@ -27,7 +27,7 @@ app.get('/', function(req, res){
 
 
 //Trying Python script nltk
-app.get('/', function(req, res){
+app.get('/shell', function(req, res){
   var options = {
   mode: 'text',
   pythonPath: 'python',
