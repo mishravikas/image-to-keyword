@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Upload your image</title>
+  <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+<img src="http://107.170.13.206:3000/uploads/<%- img_name %>" width="300" height="200" />
+            <h4 id="caption"></h4>
+            <p id="u_id" hidden><%- param1Place %><p>
+<p id="head1"></p>
+           <p id="final_output"></p>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar"></div>
+            </div>
+             <input id="adj" class="btn btn-primary" type="button" value="Adjective" />
+  <input id="ver" class="btn btn-primary" type="button" value="Verb" />
+  <input id="nou" class="btn btn-primary" type="button" value="Noun" />
+            <!-- <button class="btn btn-lg upload-btn" type="button">Upload Image</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- <input id="adj" type="button" value="Adjective" />
+  //<input id="ver" type="button" value="Verb" />
+ // <input id="nou" type="button" value="Noun" />
+-->
+  <input id="upload-input" type="file" name="uploads[]" multiple="multiple"></br>
+
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="javascripts/upload.js"></script>
+  <script type="text/javascript">
+$("input").click(function(e){
+    var idClicked = e.target.id;
+    var u_id = $('#u_id').text();
+ console.log($('#u_id').text());
+ var response = '';
+ $.ajax({ type: "GET",
+          url: "http://107.170.13.206:3000/caption"+idClicked+"?u_id="+u_id,
+          async: false,
+          success : function(text)
+          {
+              response = text;
+              $("#head1").text(e.target.value);
+              $("#final_output").text(text[0]);
+              $("#caption").text(text[1]);
+          }
+ });
+ console.log(response);
+
+});
+
+  </script>
+</body>
+</html>
