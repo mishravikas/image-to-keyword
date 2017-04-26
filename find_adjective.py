@@ -11,7 +11,7 @@ adjective = []
 tokenized = nltk.word_tokenize(lines)
 l = nltk.pos_tag(tokenized)
 for w,t in l:
-	if t.startswith('V'):
+	if t.startswith('J'):
 		adjective.append(w)
 
 print adjective

@@ -65,10 +65,27 @@ function callback(error, response, body) {
     if (!error && response.statusCode == 200) {
 var caption = JSON.parse(body)['caption'];
 console.log(caption);
-wordpos.getVerbs(caption, function(result){
-    console.log(result);
-res.send([result,caption]);
+
+  var options = {
+  mode: 'text',
+  pythonPath: 'python',
+  pythonOptions: ['-u'],
+  scriptPath: '',
+  args: [caption]
+};
+
+PythonShell.run('find_verb.py', options, function (err, results) {
+  if (err) throw err;
+  // results is an array consisting of messages collected during execution
+  console.log('results: %j', results);
+  res.send([results,caption])
 });
+
+//OLD code
+// wordpos.getVerbs(caption, function(result){
+//     console.log(result);
+// res.send([result,caption]);
+// });
 
     }
 }
