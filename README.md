@@ -1,5 +1,5 @@
-# Building an AJAX File Uploader with NodeJs
+# Upload an image and output keywords relating to that image
 
-This code is for the tutorial on building an AJAX file uploader with NodeJs, express, and formidable.
+This code implements a nodejs app where you can upload an image and it'll return some keywords based on the features of the image
 
-Check out the full tutorial at [coligo](http://coligo.io/building-ajax-file-uploader-with-node/)
+This is built on top of a tutorial by coligo [https://coligo.io/building-ajax-file-uploader-with-node/]
